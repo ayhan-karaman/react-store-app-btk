@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ProductList from '../components/ProductList';
+import Loading from '../components/Loading';
 
 const ProductsPage = () => {
 
@@ -27,7 +28,7 @@ const ProductsPage = () => {
   }, [])
 
 
-  if(loading) return <h1>Loading....</h1>
+  if(loading) return <Loading message='Yükleniyor...' />
   return (
     <ProductList products={loadedProducts} />
   )

@@ -1,14 +1,16 @@
 import React from 'react'
 import { Outlet } from 'react-router'
 import Navbar from '../components/Navbar'
+import { Container } from '@mui/material'
 
 const MainLayout = () => {
   return (
-    <div className='container'>
-         <Navbar />
-         <h1>Main Layout</h1>
-         <Outlet />
-    </div>
+    <>
+      <Navbar />
+      <Container sx={{mt:3}}>
+        <Outlet />
+      </Container>
+    </>
   )
 }
 
