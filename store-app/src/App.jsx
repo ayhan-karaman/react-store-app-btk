@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router'
 import routes from './utilities/routers/router'
 
 
-const router = createBrowserRouter(routes)
+export const router = createBrowserRouter(routes)
 
 
 function App() {

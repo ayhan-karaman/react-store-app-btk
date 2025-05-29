@@ -7,7 +7,7 @@ import { ToastContainer } from 'react-toastify';
 const MainLayout = () => {
   return (
     <>
-      <ToastContainer position='bottom-right' hideProgressBar theme="light" />
+      <ToastContainer position='bottom-right' hideProgressBar  theme="colored" />
       <Navbar />
       <Container sx={{mt:3}}>
         <Outlet />

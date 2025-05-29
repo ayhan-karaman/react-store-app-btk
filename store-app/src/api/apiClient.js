@@ -1,40 +1,66 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { router } from '../App';
 
-axios.defaults.baseURL= "https://ominous-couscous-9ww9q9556772wg-5000.app.github.dev/";
+axios.defaults.baseURL = "https://ominous-couscous-9ww9q9556772wg-5000.app.github.dev/";
 
-axios.interceptors.response.use((response)=>{
+axios.interceptors.response.use((response) => {
      console.log("Success")
-      return response;
-}, (error) =>{
-     const { data, status} = error.response
+     return response;
+}, (error) => {
+     const { data, status } = error.response
      switch (status) {
-          case 404:
-               toast.error("404 not found exception!")
+          case 400:
+               toast.error(data.message)
                break;
-     
+          case 401:
+               toast.error(data.message)
+               break;
+          case 403:
+               toast.error(data.message)
+               console.log(data.errors)
+               break;
+          case 404:
+               router.navigate("errors/not-found")
+               break;
+          case 500:
+               toast.error(data.message)
+               router.navigate('/errors/server-error', {
+                    state:{error:data, status:status}
+               })
+               break;
           default:
-               toast.warning("Internal Server")
+               // toast.warning(data.message)
                break;
      }
-     
+
      return Promise.reject(error.message)
 })
 
 const methods = {
-     get:(url) => axios.get(url).then(response => response.data),
-     post:(url) => axios.post(url, body).then(response => response.data),
-     put:(url) => axios.put(url, body).then(response => response.data),
-     delete:(url) => axios.delete(url).then(response => response.data)
+     get: (url) => axios.get(url).then(response => response.data),
+     post: (url) => axios.post(url, body).then(response => response.data),
+     put: (url) => axios.put(url, body).then(response => response.data),
+     delete: (url) => axios.delete(url).then(response => response.data)
 }
 
 const products = {
-    list:() => methods.get('products'),
-    details:(id) => methods.get(`products/${id}`)
+     list: () => methods.get('products'),
+     details: (id) => methods.get(`products/${id}`)
 }
 
+const errors = {
+     get400Error:() => methods.get("errors/bad-request").catch(error => console.log(error)),
+     get401Error:() => methods.get("errors/unauthorized").catch(error => console.log(error)),
+     get403Error:() => methods.get("errors/validation-error").catch(error => console.log(error)),
+     get404Error:() => methods.get("errors/not-found").catch(error => console.log(error)),
+     get500Error:() => methods.get("errors/server-error").catch(error => console.log(error)),
+}
+
+
 const requests = {
-     products
+     products,
+     errors
 }
 
 export default requests;

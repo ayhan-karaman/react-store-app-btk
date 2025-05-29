@@ -7,7 +7,8 @@ import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 
 const links = [
   { title: "Home", to: '/home' },
-  { title: "Products", to: '/Products' },
+  { title: "Products", to: '/products' },
+  { title: "Errors", to: '/errors' },
 ];
 
 const authLinks = [
