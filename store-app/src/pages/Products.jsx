@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ProductList from '../components/ProductList';
 import Loading from '../components/Loading';
+import requests from '../api/apiClient';
 
 const ProductsPage = () => {
 
@@ -11,8 +12,7 @@ const ProductsPage = () => {
     async function getProducts() {
       try {
 
-        const response = await fetch('https://ominous-couscous-9ww9q9556772wg-5000.app.github.dev/products');
-        const data = await response.json();
+        const data = await requests.products.list()
         setLoadedProducts(data)
 
       } catch (error) {

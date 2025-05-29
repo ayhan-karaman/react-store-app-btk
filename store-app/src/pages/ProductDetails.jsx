@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router';
 import ProductItem from '../components/ProductItem';
 import Loading from '../components/Loading';
+import requests from '../api/apiClient';
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
@@ -11,8 +12,8 @@ const ProductDetailsPage = () => {
 
     const getByProductById = async () => {
       try {
-        const response = await fetch(`https://ominous-couscous-9ww9q9556772wg-5000.app.github.dev/products/${id}`)
-        const data = await response.json();
+        
+        const data = await requests.products.details(id);
         setProduct(data)
       } catch (error) {
         console.log(error)
