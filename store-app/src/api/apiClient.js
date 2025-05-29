@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { router } from '../App';
 
 axios.defaults.baseURL = "https://ominous-couscous-9ww9q9556772wg-5000.app.github.dev/";
-
+axios.defaults.withCredentials = true;
 axios.interceptors.response.use((response) => {
      console.log("Success")
      return response;
@@ -17,8 +17,15 @@ axios.interceptors.response.use((response) => {
                toast.error(data.message)
                break;
           case 403:
-               toast.error(data.message)
-               console.log(data.errors)
+               if(data.errors)
+               {
+                    const errors = [];
+                    for (const key in data.errors) {
+                       errors.push(data.errors[key])
+                    }
+                    const result = { errors:errors, message:data.message}
+                    throw result;
+               }
                break;
           case 404:
                router.navigate("errors/not-found")
@@ -52,15 +59,21 @@ const products = {
 const errors = {
      get400Error:() => methods.get("errors/bad-request").catch(error => console.log(error)),
      get401Error:() => methods.get("errors/unauthorized").catch(error => console.log(error)),
-     get403Error:() => methods.get("errors/validation-error").catch(error => console.log(error)),
+     get403Error:() => methods.get("errors/validation-error"),
      get404Error:() => methods.get("errors/not-found").catch(error => console.log(error)),
      get500Error:() => methods.get("errors/server-error").catch(error => console.log(error)),
 }
 
+const carts = {
+      getCart:() => methods.get('carts'),
+      addItem:(productId, quantity=1) => methods.post(`carts?productId=${productId}&quantity=${quantity}`, {}),
+      deleteItem:(productId, quantity=1) => methods.delete(`carts?productId=${productId}&quantity=${quantity}`)
+}
 
 const requests = {
      products,
-     errors
+     errors,
+     carts
 }
 
 export default requests;
