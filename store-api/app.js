@@ -30,14 +30,12 @@ app.use(express.static("public"));
 
 const allowedOrigins = [
   'http://localhost:3000',
-  'http://127.0.0.1:3000',
   'https://ominous-couscous-9ww9q9556772wg-3000.app.github.dev',
-  'https://ominous-couscous-9ww9q9556772wg-3000.app.github.dev/',
 ];
 
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://ominous-couscous-9ww9q9556772wg-3000.app.github.dev");
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
   res.setHeader("Access-Control-Allow-Credentials", "true");
   res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");

@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
 
 import { AppBar, Badge, Box, Button, IconButton, Toolbar } from '@mui/material';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import { Link, NavLink } from 'react-router';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import { useCartContext } from '../context/CartContext';
 
 
 const links = [
@@ -18,6 +20,8 @@ const authLinks = [
 ]
 
 export default function Navbar() {
+const { cart } = useCartContext();
+const itemCount = cart?.cartItems.reduce((total, item) => total + item.product.quantity,0)
   return (
     <AppBar position='static' sx={{backgroundColor:"primary.light"}} >
       <Toolbar>
@@ -42,7 +46,7 @@ export default function Navbar() {
           edge="start"
           
           >
-            <Badge color='primary' badgeContent={'2'}>
+            <Badge color='primary' badgeContent={itemCount}>
               <ShoppingBagIcon />
             </Badge>
           </IconButton>

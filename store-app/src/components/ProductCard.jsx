@@ -1,28 +1,31 @@
+/* eslint-disable no-unused-vars */
 import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, CircularProgress, IconButton, Typography } from '@mui/material'
-import { Link } from 'react-router'
+import { data, Link } from 'react-router'
 import { currencyTRY } from '../utilities/tools/tools'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useState } from 'react';
 import requests from '../api/apiClient'
-
+import { useCartContext } from '../context/CartContext';
 
 const ProductCard = ({ product }) => {
     const [loading, setLoading] = useState(false);
+    const {setCart } = useCartContext(); 
+
     const handleAddItem = (productId) =>{
-        //  setLoading(true)
-        //  requests.carts.addItem(productId)
-        //  .then(resposne => console.log(resposne))
-        //  .catch(error => console.log(error))
-        //  .finally(() => setLoading(false));
-        console.log(productId)
+         setLoading(true)
+         requests.cart.addItem(productId)
+         .then(data => setCart(data))
+         .catch(error => console.log(error))
+         .finally(() => setLoading(false));
+       
     }
 
 
     return (
         <Card>
             <CardActionArea component={Link} to={`/products/${product.id}`} >
-                <CardMedia sx={{height:160, backgroundSize:'contain'}} image={`https://ominous-couscous-9ww9q9556772wg-5000.app.github.dev/images/${product.image}`}/>
+                <CardMedia sx={{height:160, backgroundSize:'contain'}} image={`http://localhost:5000/images/${product.image}`}/>
                 <CardContent>
                     <Typography color='primary.dark' variant='h6' component={'h2'} gutterBottom>
                         {product.title}

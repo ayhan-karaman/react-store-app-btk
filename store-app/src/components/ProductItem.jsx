@@ -6,7 +6,7 @@ const ProductItem = ({product}) => {
     <Grid container spacing={2}>
         <Grid size={{lg:4, md:5, sm:6, xs:12}}>
             <Paper variant='outlined' sx={{p:3}}>
-                 <img style={{width:'100%'}} src={`https://ominous-couscous-9ww9q9556772wg-5000.app.github.dev/images/${product.image}`} />
+                 <img style={{width:'100%'}} src={`http://localhost:5000/images/${product.image}`} />
             </Paper>
         </Grid>
         <Grid size={{lg:8, md:7, sm:6, xs:12}}>

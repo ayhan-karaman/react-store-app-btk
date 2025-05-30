@@ -2,7 +2,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { router } from '../App';
 
-axios.defaults.baseURL = "https://ominous-couscous-9ww9q9556772wg-5000.app.github.dev/";
+axios.defaults.baseURL = "http://localhost:5000/";
 axios.defaults.withCredentials = true;
 axios.interceptors.response.use((response) => {
      console.log("Success")
@@ -47,8 +47,8 @@ axios.interceptors.response.use((response) => {
 
 const methods = {
      get: (url) => axios.get(url).then(response => response.data),
-     post: (url) => axios.post(url, body).then(response => response.data),
-     put: (url) => axios.put(url, body).then(response => response.data),
+     post: (url, body) => axios.post(url, body).then(response => response.data),
+     put: (url, body) => axios.put(url, body).then(response => response.data),
      delete: (url) => axios.delete(url).then(response => response.data)
 }
 
@@ -56,6 +56,8 @@ const products = {
      list: () => methods.get('products'),
      details: (id) => methods.get(`products/${id}`)
 }
+
+
 
 const errors = {
      get400Error:() => methods.get("errors/bad-request").catch(error => console.log(error)),
