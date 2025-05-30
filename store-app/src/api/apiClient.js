@@ -8,7 +8,8 @@ axios.interceptors.response.use((response) => {
      console.log("Success")
      return response;
 }, (error) => {
-     const { data, status } = error.response
+     const { data, status } =  error.response;
+     console.log(error)
      switch (status) {
           case 400:
                toast.error(data.message)
@@ -64,7 +65,7 @@ const errors = {
      get500Error:() => methods.get("errors/server-error").catch(error => console.log(error)),
 }
 
-const carts = {
+const cart = {
       getCart:() => methods.get('carts'),
       addItem:(productId, quantity=1) => methods.post(`carts?productId=${productId}&quantity=${quantity}`, {}),
       deleteItem:(productId, quantity=1) => methods.delete(`carts?productId=${productId}&quantity=${quantity}`)
@@ -73,7 +74,7 @@ const carts = {
 const requests = {
      products,
      errors,
-     carts
+     cart
 }
 
 export default requests;

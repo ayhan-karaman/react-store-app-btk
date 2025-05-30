@@ -8,11 +8,13 @@ export const router = createBrowserRouter(routes)
 
 
 function App() {
- useEffect(() =>{
-  requests.carts.getCart()
-  .then((cart) => console.log(cart))
-  .catch(error => console.log(error))
- },[])
+ useEffect(() => {
+    requests.cart
+      .getCart()
+      .then((cart) => console.log(cart))
+      .catch((error) => console.log(error));
+  }, []);
+
 
 
   return (

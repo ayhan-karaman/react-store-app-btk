@@ -12,7 +12,7 @@ const router = express.Router();
 router.get("/", async (req, res, next) => {
   try {
     const cart = await getCart(req.cookies.customerId);
-
+  
     res.cookie("customerId", cart.customerId, {
       maxAge: 1000 * 60 * 60 * 24 * 30,
       httpOnly: true,
