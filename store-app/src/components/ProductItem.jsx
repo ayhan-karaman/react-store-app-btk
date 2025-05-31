@@ -1,7 +1,9 @@
-import { Grid, Paper, Typography } from '@mui/material'
-import React from 'react'
 
-const ProductItem = ({product}) => {
+import { Button, CircularProgress, Grid, Paper, Stack, Typography } from '@mui/material'
+import { currencyTRY } from '../utilities/tools/tools'
+import ReportIcon from '@mui/icons-material/Report';
+
+const ProductItem = ({product, handleAddItem, loading, cartItem}) => {
   return (
     <Grid container spacing={2}>
         <Grid size={{lg:4, md:5, sm:6, xs:12}}>
@@ -17,6 +19,25 @@ const ProductItem = ({product}) => {
                 <Typography variant='body1'>
                     {product.description}
                 </Typography>
+                <Typography variant='h5' sx={{mt:3}}>
+                     {currencyTRY.format(product.price)}
+                </Typography>
+                <Stack direction={'row'} display={'flex'} alignItems={'center'} gap={2} sx={{mt:3}} >
+                     <Button onClick={() => handleAddItem(product.id)} variant='contained' color='primary' > Sepete Ekle</Button>
+                     {
+                         cartItem?.product.quantity > 0 && (
+                             <Paper  sx={{display:'flex', alignItems:'center'}} variant='body2'>
+                                 <ReportIcon color='primary' />
+                                 Sepetinize 
+                                 <Typography marginX={.7} fontWeight={'bold'}  >{cartItem.product.quantity}</Typography>
+                                  adet ürün eklendi.
+                             </Paper>
+                         )
+                     }
+                     {
+                         loading && <CircularProgress size={'20px'} color='primary' />
+                     }
+                </Stack>
             </Paper>
         </Grid>
     </Grid>
