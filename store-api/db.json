@@ -1,1 +1,79 @@
-{"products":[{"id":"1","title":"Mont 1","description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste libero repudiandae quod omnis mollitia nam quo, quisquam quidem consectetur molestias ullam id aliquid, nobis, tempore repellendus iure. Vitae, vel fuga.","image":"1.jpg","price":"2300"},{"id":"2","title":"Mont 2","description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste libero repudiandae quod omnis mollitia nam quo, quisquam quidem consectetur molestias ullam id aliquid, nobis, tempore repellendus iure. Vitae, vel fuga.","image":"2.jpg","price":"2100"},{"id":"3","title":"Mont 3","description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste libero repudiandae quod omnis mollitia nam quo, quisquam quidem consectetur molestias ullam id aliquid, nobis, tempore repellendus iure. Vitae, vel fuga.","image":"3.jpg","price":"2400"},{"id":"4","title":"Mont 4","description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste libero repudiandae quod omnis mollitia nam quo, quisquam quidem consectetur molestias ullam id aliquid, nobis, tempore repellendus iure. Vitae, vel fuga.","image":"4.jpg","price":"1800"},{"id":"5","title":"Mont 5","description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste libero repudiandae quod omnis mollitia nam quo, quisquam quidem consectetur molestias ullam id aliquid, nobis, tempore repellendus iure. Vitae, vel fuga.","image":"5.jpg","price":"3200"},{"id":"6","title":"Mont 6","description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste libero repudiandae quod omnis mollitia nam quo, quisquam quidem consectetur molestias ullam id aliquid, nobis, tempore repellendus iure. Vitae, vel fuga.","image":"6.jpg","price":"3400"}],"users":[{"id":"e10c4c6d-b804-4c1f-9dfb-9b3396a20243","username":"sadikturan","email":"info@sadikturan.com","password":"$2a$10$/xUsLl6c8kaMHL5RjAu8GeSCmnzVoiQUBzx9BpMad72ajCaJGNXvq"}],"orders":[],"carts":[{"id":"500d2372-4f2c-4d33-92ac-a0f5b7cd64a5","customerId":"1efb161e-9ef8-4547-9b8a-ba8118d5a8f5","cartItems":[]},{"id":"96cd6a0b-5b2e-4236-85fb-087110e91c6c","customerId":"d68497eb-fa76-41a2-b2db-e14f8f679415","cartItems":[{"id":"2a5ed457-e3d9-47bb-875e-3ad7038dc028","productId":"2","quantity":4},{"id":"bc3dd538-cb02-469b-83bb-b0e6f83442d2","productId":"5","quantity":2},{"id":"318eb8e3-640b-40ca-a5be-d089705a5a5b","productId":"3","quantity":1}]},{"id":"ed4b8339-a276-41be-b18b-85b708f2a749","customerId":"6cd899b8-c268-414e-837f-fd2888e9b9ca","cartItems":[]},{"id":"9eee881f-6453-4c2a-b618-5c9d5ae55f88","customerId":"4e2d624d-e159-4566-8a33-59b2aff12477","cartItems":[]},{"id":"db231d7e-cd39-4987-ba89-2c4f277b81bd","customerId":"253dca4a-8237-4d3b-8488-f8a730e01609","cartItems":[]},{"id":"87141c0d-58a5-43d2-8fdb-dd58faf539c1","customerId":"ea925b76-c844-4c66-8a5f-1e37227a5201","cartItems":[{"id":"16263f67-23aa-4d48-806d-a8025211e99e","productId":"3","quantity":1}]}]}
+{
+    "products": [
+        {
+            "id": "1",
+            "title": "Mont 1",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste libero repudiandae quod omnis mollitia nam quo, quisquam quidem consectetur molestias ullam id aliquid, nobis, tempore repellendus iure. Vitae, vel fuga.",
+            "image": "1.jpg",
+            "price": "2300"
+        },
+        {
+            "id": "2",
+            "title": "Mont 2",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste libero repudiandae quod omnis mollitia nam quo, quisquam quidem consectetur molestias ullam id aliquid, nobis, tempore repellendus iure. Vitae, vel fuga.",
+            "image": "2.jpg",
+            "price": "2100"
+        },
+        {
+            "id": "3",
+            "title": "Mont 3",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste libero repudiandae quod omnis mollitia nam quo, quisquam quidem consectetur molestias ullam id aliquid, nobis, tempore repellendus iure. Vitae, vel fuga.",
+            "image": "3.jpg",
+            "price": "2400"
+        },
+        {
+            "id": "4",
+            "title": "Mont 4",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste libero repudiandae quod omnis mollitia nam quo, quisquam quidem consectetur molestias ullam id aliquid, nobis, tempore repellendus iure. Vitae, vel fuga.",
+            "image": "4.jpg",
+            "price": "1800"
+        },
+        {
+            "id": "5",
+            "title": "Mont 5",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste libero repudiandae quod omnis mollitia nam quo, quisquam quidem consectetur molestias ullam id aliquid, nobis, tempore repellendus iure. Vitae, vel fuga.",
+            "image": "5.jpg",
+            "price": "3200"
+        },
+        {
+            "id": "6",
+            "title": "Mont 6",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste libero repudiandae quod omnis mollitia nam quo, quisquam quidem consectetur molestias ullam id aliquid, nobis, tempore repellendus iure. Vitae, vel fuga.",
+            "image": "6.jpg",
+            "price": "3400"
+        }
+    ],
+    "users": [
+        {
+            "id": "e10c4c6d-b804-4c1f-9dfb-9b3396a20243",
+            "username": "sadikturan",
+            "email": "info@sadikturan.com",
+            "password": "$2a$10$/xUsLl6c8kaMHL5RjAu8GeSCmnzVoiQUBzx9BpMad72ajCaJGNXvq"
+        }
+    ],
+    "orders": [],
+    "carts": [
+        {
+            "id": "c81431e4-36e3-4491-9eba-f3383c9171d4",
+            "customerId": "65924b0c-2e4d-4f2c-83f7-ee1f032db7ea",
+            "cartItems": [
+                {
+                    "id": "1f4cae04-ae1c-414f-889f-c34153554ad2",
+                    "productId": "2",
+                    "quantity": 4
+                }
+            ]
+        },
+        {
+            "id": "e13e332e-12de-4cac-bde5-5a349d4a70d2",
+            "customerId": "4e2e2fa3-b3ca-4a1d-828b-e29c1b6f4ab6",
+            "cartItems": [
+                {
+                    "id": "9b89fdc0-66bf-4ecb-b106-6f8fa38b37f5",
+                    "productId": "4",
+                    "quantity": 2
+                }
+            ]
+        }
+    ]
+}
