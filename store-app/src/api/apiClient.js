@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { router } from '../App';
-import { baseURIs } from './urls';
+import { baseURL } from './urls';
 
-axios.defaults.baseURL = baseURIs.codespace;
+
+axios.defaults.baseURL = baseURL;
 axios.defaults.withCredentials = true;
 axios.interceptors.response.use((response) => {
      console.log("Success")

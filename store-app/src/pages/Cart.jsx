@@ -8,7 +8,8 @@ import { Delete } from '@mui/icons-material'
 import { useCartContext } from "../context/CartContext";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
-import { baseURIs } from "../api/urls";
+import { baseURL } from "../api/urls";
+
 
 
 const CartPage = () => {
@@ -56,7 +57,7 @@ const CartPage = () => {
             cart.cartItems.map((item) => (
               <TableRow key={item.id}>
                 <TableCell>
-                  <img style={{ width: '100%' }} src={`${baseURIs.codespace}images/${item.product.image}`} alt="" />
+                  <img style={{ width: '100%' }} src={`${baseURL}images/${item.product.image}`} alt="" />
                 </TableCell>
                 <TableCell>{item.product.title}</TableCell>
                 <TableCell> {currencyTRY.format(item.product.price)} </TableCell>
