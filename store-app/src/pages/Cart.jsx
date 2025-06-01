@@ -8,12 +8,18 @@ import { Delete } from '@mui/icons-material'
 import { useCartContext } from "../context/CartContext";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import { baseURIs } from "../api/urls";
 
 
 const CartPage = () => {
   const { cart, setCart } = useCartContext();
   const [status, setStatus] = useState({loading:false, id:''});
+  
+  const subTotal = cart?.cartItems.reduce((total, item) => 
+  total + item.product.price * item.product.quantity, 0);
 
+  const tax = subTotal * 0.2;
+  const total = subTotal + tax;
 
   if (!cart || cart.cartItems.length <= 0) return <Typography component='h4' color="warning" gutterBottom >Sepette Ürün Bulunamadı</Typography>
   
@@ -50,7 +56,7 @@ const CartPage = () => {
             cart.cartItems.map((item) => (
               <TableRow key={item.id}>
                 <TableCell>
-                  <img style={{ width: '100%' }} src={`http://localhost:5000/images/${item.product.image}`} alt="" />
+                  <img style={{ width: '100%' }} src={`${baseURIs.codespace}images/${item.product.image}`} alt="" />
                 </TableCell>
                 <TableCell>{item.product.title}</TableCell>
                 <TableCell> {currencyTRY.format(item.product.price)} </TableCell>
@@ -83,7 +89,25 @@ const CartPage = () => {
                 </TableCell>
               </TableRow>
             ))
-          }
+          } 
+          <TableRow>
+             <TableCell align="right" colSpan={5}>
+                Ara Toplam: 
+             </TableCell>
+             <TableCell>{ currencyTRY.format(subTotal)} </TableCell>
+          </TableRow>
+          <TableRow>
+             <TableCell align="right" colSpan={5}>
+                Vergi: 
+             </TableCell>
+             <TableCell>{ currencyTRY.format(tax)} </TableCell>
+          </TableRow>
+          <TableRow>
+             <TableCell align="right" colSpan={5}>
+               Toplam: 
+             </TableCell>
+             <TableCell>{ currencyTRY.format(total)} </TableCell>
+          </TableRow>
         </TableBody>
       </Table>
     </TableContainer>

@@ -2,13 +2,13 @@
 import { Button, CircularProgress, Grid, Paper, Stack, Typography } from '@mui/material'
 import { currencyTRY } from '../utilities/tools/tools'
 import ReportIcon from '@mui/icons-material/Report';
-
+import { baseURIs } from '../api/urls';
 const ProductItem = ({product, handleAddItem, loading, cartItem}) => {
   return (
     <Grid container spacing={2}>
         <Grid size={{lg:4, md:5, sm:6, xs:12}}>
             <Paper variant='outlined' sx={{p:3}}>
-                 <img style={{width:'100%'}} src={`http://localhost:5000/images/${product.image}`} />
+                 <img style={{width:'100%'}} src={`${baseURIs.codespace}images/${product.image}`} />
             </Paper>
         </Grid>
         <Grid size={{lg:8, md:7, sm:6, xs:12}}>

@@ -16,31 +16,38 @@ const { NotFoundError } = require("./util/errors");
 
 const app = express();
 
-const corsConfig = {
-  origin: true,
-  credentials: true,
-};
+// const corsConfig = {
+//   origin: true,
+//   credentials: true,
+// };
 
-app.use(cors(corsConfig));
-app.options("*", cors(corsConfig));
-
-app.use(cookieParser());
-app.use(bodyParser.json());
-app.use(express.static("public"));
-
+// app.use(cors(corsConfig));
+// app.options("*", cors(corsConfig));
 const allowedOrigins = [
   'http://localhost:3000',
-  'https://ominous-couscous-9ww9q9556772wg-3000.app.github.dev',
+  'https://refactored-potato-555q4qrr4q92j7j-3000.app.github.dev'
 ];
 
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+  const origin = req.headers.origin;
+  if(allowedOrigins.includes(origin))
+  {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
   res.setHeader("Access-Control-Allow-Credentials", "true");
   res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  if(req.method === "OPTIONS")
+      return res.sendStatus(204)
+
   next();
 });
+
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(express.static("public"));
 
 app.use("/products", productsRoutes);
 app.use("/carts", cartsRoutes);

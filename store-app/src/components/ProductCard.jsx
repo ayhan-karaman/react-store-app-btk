@@ -7,6 +7,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useState } from 'react';
 import requests from '../api/apiClient'
 import { useCartContext } from '../context/CartContext';
+import { baseURIs } from '../api/urls';
 
 const ProductCard = ({ product }) => {
     const [loading, setLoading] = useState(false);
@@ -25,7 +26,7 @@ const ProductCard = ({ product }) => {
     return (
         <Card>
             <CardActionArea component={Link} to={`/products/${product.id}`} >
-                <CardMedia sx={{height:160, backgroundSize:'contain'}} image={`http://localhost:5000/images/${product.image}`}/>
+                <CardMedia sx={{height:160, backgroundSize:'contain'}} image={`${baseURIs.codespace}images/${product.image}`}/>
                 <CardContent>
                     <Typography color='primary.dark' variant='h6' component={'h2'} gutterBottom>
                         {product.title}
