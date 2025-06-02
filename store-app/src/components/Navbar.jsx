@@ -5,6 +5,7 @@ import StorefrontIcon from '@mui/icons-material/Storefront';
 import { Link, NavLink } from 'react-router';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import { useCartContext } from '../context/CartContext';
+import { useSelector } from 'react-redux';
 
 
 const links = [
@@ -20,7 +21,8 @@ const authLinks = [
 ]
 
 export default function Navbar() {
-const { cart } = useCartContext();
+// const { cart } = useCartContext();
+const { cart } = useSelector((state) => state.shoppingCart);
 const itemCount = cart?.cartItems.reduce((total, item) => total + item.product.quantity,0)
   return (
     <AppBar position='static' sx={{backgroundColor:"primary.light"}} >

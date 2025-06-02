@@ -1,52 +1,42 @@
+/* eslint-disable no-unused-vars */
 
-import React, { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useParams } from 'react-router';
 import ProductItem from '../components/ProductItem';
 import Loading from '../components/Loading';
-import requests from '../api/apiClient';
-import { useCartContext } from '../context/CartContext';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { addItemToCart } from './cart/cartSlice';
+import { fetchProductById, selectProductById } from './catalog/catalogSlice';
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [addLoading, setAddLoading] = useState(false);
-  const {cart, setCart} = useCartContext();
-  
-  const cartItem = cart?.cartItems.find(c => c.product.productId == product?.id )
+  const { cart, status } = useSelector((state) => state.shoppingCart);
+  const dispatch = useDispatch();
+  const product = useSelector((state) => selectProductById(state, id));
+  const { status:loading } = useSelector((state) => state.catalog);
 
-  const handleAddItem = (productId) => {
-       setAddLoading(true);
-       requests.cart.addItem(productId)
-       .then((data) =>  setCart(data))
-       .catch((error) => console.log(error))
-       .finally(() => setAddLoading(false))
+  const cartItem = cart?.cartItems.find(
+    (i) => i.product.productId == product?.id
+  );
+
+  function handleAddItem(productId) {
+    dispatch(addItemToCart({ productId: productId }));
   }
 
-
   useEffect(() => {
-
-    const getByProductById = async () => {
-      try {
-        
-        const data = await requests.products.details(id);
-        setProduct(data)
-      } catch (error) {
-        console.log(error)
-      } finally {
-        setLoading(false)
-      }
+    if (!product && id) {
+      dispatch(fetchProductById(id));
     }
+    console.log(id)
+  }, [id, product]);
 
 
+  if (loading === "pendingFetchProductById" || !product)
+    return <Loading message="Yükleniyor..." />;
 
-    getByProductById();
-
-
-  }, [id])
-
-  if(loading) return <Loading message='Yükleniyor...' />
-  return <ProductItem product={product} handleAddItem={handleAddItem} loading={addLoading} cartItem={cartItem} />
+  return <ProductItem product={product} handleAddItem={handleAddItem} loading={status === `addItemToCart${product.id}`}
+ cartItem={cartItem} />
 }
 
 export default ProductDetailsPage

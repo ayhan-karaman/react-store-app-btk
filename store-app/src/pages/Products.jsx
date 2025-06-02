@@ -1,34 +1,23 @@
-import React, { useEffect, useState } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect } from 'react'
 import ProductList from '../components/ProductList';
 import Loading from '../components/Loading';
-import requests from '../api/apiClient';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { fetchAllProducts, selectAllProducts } from './catalog/catalogSlice';
 
 const ProductsPage = () => {
-
-  const [loadedProducts, setLoadedProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  const loadedProducts = useSelector(selectAllProducts)
+  const { status, isLoading } = useSelector(state => state.catalog)
 
   useEffect(() => {
-    async function getProducts() {
-      try {
-
-        const data = await requests.products.list()
-        setLoadedProducts(data)
-
-      } catch (error) {
-          console.log(error)
-      }
-      finally{
-          setLoading(false)
-      }
-    }
-
-    getProducts()
-
-  }, [])
+     if(!isLoading)
+       dispatch(fetchAllProducts())
+  }, [isLoading])
 
 
-  if(loading) return <Loading message='Yükleniyor...' />
+  if(status === "pendingFetchProducts") return <Loading message='Yükleniyor...' />
   return (
     <ProductList products={loadedProducts} />
   )

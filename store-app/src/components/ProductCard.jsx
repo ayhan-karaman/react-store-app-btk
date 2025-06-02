@@ -8,19 +8,24 @@ import { useState } from 'react';
 import requests from '../api/apiClient'
 import { useCartContext } from '../context/CartContext';
 import { baseURL } from '../api/urls';
+import { useDispatch } from 'react-redux';
+import { addItemToCart, setCart } from '../pages/cart/cartSlice';
+import { useSelector } from 'react-redux';
 
 const ProductCard = ({ product }) => {
     const [loading, setLoading] = useState(false);
-    const {setCart } = useCartContext(); 
-
-    const handleAddItem = (productId) =>{
-         setLoading(true)
-         requests.cart.addItem(productId)
-         .then(data => setCart(data))
-         .catch(error => console.log(error))
-         .finally(() => setLoading(false));
+    // const {setCart } = useCartContext(); 
+    const dispatch = useDispatch();
+    const { status } = useSelector((state) => state.shoppingCart)
+     console.log(status)
+    // const handleAddItem = (productId) =>{
+    //      setLoading(true)
+    //      requests.cart.addItem(productId)
+    //      .then(data => dispatch(setCart(data)))
+    //      .catch(error => console.log(error))
+    //      .finally(() => setLoading(false));
        
-    }
+    // }
 
 
     return (
@@ -41,9 +46,9 @@ const ProductCard = ({ product }) => {
                     {/* <FavoriteIcon /> */}
                     <FavoriteBorderIcon />
                 </IconButton>
-                <Button onClick={() => handleAddItem(product.id)} >
+                <Button onClick={() => dispatch(addItemToCart({productId:product.id}))} >
                     {
-                        loading ? <CircularProgress size={'20px'} /> : "Sepete Ekle"
+                        status === "pendingAddItem" +  product.id ? <CircularProgress size={'20px'} /> : "Sepete Ekle"
                     }
                 </Button>
             </CardActions>

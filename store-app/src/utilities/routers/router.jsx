@@ -1,5 +1,5 @@
 import MainLayout from '../../layouts/MainLayout'
-import CartPage from '../../pages/Cart';
+import CartPage from '../../pages/cart/Cart';
 import ErrorPage from '../../pages/errors/Error';
 import NotFoundPage from '../../pages/errors/NotFound';
 import ServerErrorPage from '../../pages/errors/ServerError';
