@@ -1,13 +1,13 @@
 import MainLayout from '../../layouts/MainLayout'
+import LoginPage from '../../pages/account/Login';
+import RegisterPage from '../../pages/account/Register';
 import CartPage from '../../pages/cart/Cart';
 import ErrorPage from '../../pages/errors/Error';
 import NotFoundPage from '../../pages/errors/NotFound';
 import ServerErrorPage from '../../pages/errors/ServerError';
 import HomePage from '../../pages/Home';
-import LoginPage from '../../pages/Login';
 import ProductDetailsPage from '../../pages/ProductDetails';
 import ProductsPage from '../../pages/Products';
-import RegisterPage from '../../pages/Register';
 
 const routes = [
 
