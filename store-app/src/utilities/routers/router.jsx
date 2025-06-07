@@ -8,6 +8,8 @@ import ProductDetailsPage from '../../pages/ProductDetails';
 import ProductsPage from '../../pages/Products';
 import CartPage from '../../pages/cart/Cart';
 import MainLayout from '../../layouts/Main'
+import CheckoutPage from '../../pages/checkout/Checkout';
+import AuthGuard from '../../auth/AuthGuard'
 
 const routes = [
 
@@ -27,6 +29,13 @@ const routes = [
       { path: 'cart', element: <CartPage /> },
       { path: 'login', element: <LoginPage /> },
       { path: 'register', element: <RegisterPage /> },
+      {
+        element:<AuthGuard />,
+        children:[
+          { path: 'checkout', element: <CheckoutPage /> },
+
+        ]
+      },
       {
         path: 'errors',
         children: [

@@ -28,7 +28,6 @@ const ProductDetailsPage = () => {
     if (!product && id) {
       dispatch(fetchProductById(id));
     }
-    console.log(id)
   }, [id, product]);
 
 
