@@ -46,7 +46,6 @@ export const catalogSlice = createSlice({
             state.status = "idle"
         })
         builder.addCase(fetchProductById.rejected, (state) => {
-            console.log(state)
             state.status = "idle"
         })
     }

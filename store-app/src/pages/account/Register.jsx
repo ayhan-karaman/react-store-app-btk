@@ -1,16 +1,19 @@
 /* eslint-disable no-unused-vars */
-import { Avatar, Box, Button, Container, Paper, TextField, Typography } from '@mui/material'
+import { Avatar, Box, Button, CircularProgress, Container, Paper, TextField, Typography } from '@mui/material'
 import { LockOutlined } from '@mui/icons-material'
 import { useForm } from 'react-hook-form'
-import requests from '../../api/apiClient'
-import { useNavigate } from 'react-router'
+import { useDispatch } from 'react-redux'
+import { registerUser } from './accountSlice'
+import { useSelector } from 'react-redux'
 
 const RegisterPage = () => {
-  const navigate = useNavigate();
+
+  const dispatch = useDispatch()
+  const { status } = useSelector((state) => state.account)
 
   const { register, handleSubmit,
     formState: {
-      errors, isValid, isDirty
+      errors, isValid
     }
   } = useForm({
     defaultValues: {
@@ -21,12 +24,7 @@ const RegisterPage = () => {
   })
 
   const handleForm = (data) => {
-     requests.account.register(data)
-     .then((result)=> {
-        console.log(result);
-        navigate('/login')
-     })
-     .catch(err => console.log(err))
+      dispatch(registerUser(data))
   }
 
 
@@ -97,7 +95,7 @@ const RegisterPage = () => {
           </TextField>
 
           <Button type='submit' variant='contained' fullWidth sx={{ mt: 2 }} color='primary'>
-            Register
+            { status === 'pending'? <CircularProgress size='25px' color='inherit' /> : 'Register'}
           </Button>
         </Box>
       </Paper>

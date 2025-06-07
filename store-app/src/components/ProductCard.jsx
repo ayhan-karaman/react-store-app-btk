@@ -1,15 +1,13 @@
 /* eslint-disable no-unused-vars */
 import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, CircularProgress, IconButton, Typography } from '@mui/material'
-import { data, Link } from 'react-router'
+import { Link } from 'react-router'
 import { currencyTRY } from '../utilities/tools/tools'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useState } from 'react';
-import requests from '../api/apiClient'
-import { useCartContext } from '../context/CartContext';
 import { baseURL } from '../api/urls';
 import { useDispatch } from 'react-redux';
-import { addItemToCart, setCart } from '../pages/cart/cartSlice';
+import { addItemToCart } from '../pages/cart/cartSlice';
 import { useSelector } from 'react-redux';
 
 const ProductCard = ({ product }) => {
@@ -17,7 +15,7 @@ const ProductCard = ({ product }) => {
     // const {setCart } = useCartContext(); 
     const dispatch = useDispatch();
     const { status } = useSelector((state) => state.shoppingCart)
-     console.log(status)
+  
     // const handleAddItem = (productId) =>{
     //      setLoading(true)
     //      requests.cart.addItem(productId)

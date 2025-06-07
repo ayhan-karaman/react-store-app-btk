@@ -1,48 +1,30 @@
-/* eslint-disable no-unused-vars */
-import { createBrowserRouter, RouterProvider } from 'react-router'
+import { createBrowserRouter, RouterProvider } from "react-router";
+import { useEffect, useState } from "react";
+import requests from "./api/apiClient";
+import { getCart} from "./pages/cart/cartSlice";
+import { useDispatch } from "react-redux";
+import { getUser} from "./pages/account/accountSlice";
 import routes from './utilities/routers/router'
-import { useEffect } from 'react'
-import requests from './api/apiClient'
-import { useDispatch } from 'react-redux'
-import { setCart } from './pages/cart/cartSlice'
-import { logout, setUser } from './pages/account/accountSlice'
+import Loading from "./components/Loading";
 
-export const router = createBrowserRouter(routes)
 
+
+
+export const router = createBrowserRouter(routes);
 
 function App() {
-  //const { setCart } = useCartContext();
- const dispatch  = useDispatch();
-
-
- useEffect(() => {
-    dispatch(setUser(JSON.parse(localStorage.getItem('user'))))
-    requests.account.getUser()
-    .then((user) => {
-       console.log(user);
-       localStorage.setItem('user', JSON.stringify(user))
-       setUser(user)
-    })
-    .catch(err => {
-      console.log(err)
-      dispatch(logout())
-    });
-
-
-
-    requests.cart
-      .getCart()
-      .then((cart) => dispatch(setCart(cart)))
-      .catch((error) => console.log(error));
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
+  const initApp = async() => {
+      await dispatch(getUser());
+      await dispatch(getCart())
+  }
+  useEffect(() => {
+    initApp().then(() => setLoading(false));
+   
   }, []);
-
-
-
-  return (
-    <>
-      <RouterProvider router={router} />
-    </>
-  )
+  if(loading) return <Loading message="Uygulama başlatılıyor..." />
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
