@@ -10,11 +10,11 @@ const AddressForm = () => {
     <Grid container spacing={3}>
       <Grid size={{ xs:12, md:6 }}>
         <TextField
-          {...register("firstName", {
+          {...register("firstname", {
             required: 'Adınızı girmelisiniz'
           })}
-          helperText={errors.firstName?.message}
-          error={!!errors.firstName}
+          helperText={errors.firstname?.message}
+          error={!!errors.firstname}
           size='small'
           label="Enter First Name"
           fullWidth
@@ -25,11 +25,11 @@ const AddressForm = () => {
       </Grid>
       <Grid size={{ xs:12, md:6 }}>
         <TextField
-          {...register("lastName", {
+          {...register("lastname", {
             required: 'Soyadınızı girmelisiniz'
           })}
-          helperText={errors.lastName?.message}
-          error={!!errors.lastName}
+          helperText={errors.lastname?.message}
+          error={!!errors.lastname}
           size='small'
           label="Enter Last Name"
           fullWidth
@@ -67,14 +67,16 @@ const AddressForm = () => {
       <Grid size={{ xs: 12 }}>
         <TextField
 
-          {...register("addressline", {
+          {...register("address", {
             required: 'Teslimat adresinizi girmelisiniz'
           })}
-          helperText={errors.addressline?.message}
-          error={!!errors.addressline}
+          helperText={errors.address?.message}
+          error={!!errors.address}
           size='small'
           label="Enter Address"
           fullWidth
+          multiline
+          rows={4}
           sx={{ mb: 2 }}
         />
       </Grid>
